@@ -1,0 +1,36 @@
+name: superBAR
+main: FaigerSYS\superBAR\superBAR
+version: 1.0.0
+api: [3.0.0-ALPHA9]
+load: POSTWORLD
+author: [FaigerSYS, JackMD]
+description: "Just good and customizable HUD"
+
+commands:
+ superbar:
+  description: "superBAR command"
+  aliases: [sb, supbar, sbar]
+  permission: "superbar.cmd"
+
+permissions:
+ superbar:
+  default: op
+  description: "Use all features (commands and other) of superBAR"
+ superbar.use:
+  default: true
+  description: "Use HUD (You can see HUD)"
+ superbar.cmd:
+  default: true
+  description: "Use superBAR commands"
+ superbar.help:
+  default: true
+  description: "Use superBAR help"
+ superbar.switch:
+  default: true
+  description: "Enable/Disable HUD for you"
+ superbar.change:
+  default: op
+  description: "Change settings via command"
+ superbar.reload:
+  default: op
+  description: "Reload settings"
