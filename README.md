@@ -3,7 +3,7 @@
 
 ###  Originally created by @FaigerSYS. Updated for PocketMine-MP 1.2 by @JackMD.
 
-To download, look [here](https://github.com/JackMD/superBAR/releases).
+To download, look [here](https://poggit.pmmp.io/ci/JackMD/superBAR).
 
 All setup instructions you can see in the [config](https://github.com/JackMD/superBAR/blob/master/resources/config.yml).
 
