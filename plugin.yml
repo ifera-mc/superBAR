@@ -1,9 +1,10 @@
 name: superBAR
 main: FaigerSYS\superBAR\superBAR
-version: 1.0.0
-api: [3.0.0-ALPHA10]
+version: 1.2.10.2
+api: [3.0.0-ALPHA10, 3.0.0-ALPHA11]
 load: POSTWORLD
-author: [FaigerSYS, JackMD]
+author: [FaigerSYS]
+authors: [JackMD]
 description: "Just good and customizable HUD"
 
 commands:
