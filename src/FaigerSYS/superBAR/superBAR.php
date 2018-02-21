@@ -26,6 +26,13 @@ class superBAR extends PluginBase
         $this->getServer()->getScheduler()->scheduleDelayedTask(new LoaderTask($this, superBAR::$loader), 0);
     }
 
+    /**
+     * @param CommandSender $sender
+     * @param Command $command
+     * @param string $label
+     * @param array $args
+     * @return bool
+     */
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
     {
         CommandController::executeCommand($this, $sender, $args);
@@ -95,14 +102,22 @@ class superBAR extends PluginBase
         return superBAR::$loader->getData()->isDefaultEnabled();
     }
 
+    /**
+     * @param CommandSender $object
+     * @param string $permission
+     * @return bool
+     */
     public function hasPermission(CommandSender $object, string $permission)
     {
         return ($object->hasPermission('superbar') || $object->hasPermission('superbar.' . $permission));
     }
 
+    /**
+     * @param string $text
+     */
     public function sendLog(string $text)
     {
-        return $this->getServer()->getLogger()->info(superBAR::PREFIX . $text);
+        return $this->getLogger()->info(superBAR::PREFIX . $text);
     }
 
     public function onDisable()
