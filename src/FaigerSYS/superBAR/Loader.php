@@ -1,16 +1,14 @@
 <?php
+
 namespace FaigerSYS\superBAR;
-
-use pocketmine\utils\TextFormat as CLR;
-
-use FaigerSYS\superBAR\core\HUD;
-use FaigerSYS\superBAR\core\HUDShowTask;
 
 use FaigerSYS\superBAR\controller\DataController;
 use FaigerSYS\superBAR\controller\EventController;
-
-use FaigerSYS\superBAR\provider\ConfigProvider;
+use FaigerSYS\superBAR\core\HUD;
+use FaigerSYS\superBAR\core\HUDShowTask;
 use FaigerSYS\superBAR\provider\AddonProvider;
+use FaigerSYS\superBAR\provider\ConfigProvider;
+use pocketmine\utils\TextFormat as CLR;
 
 class Loader extends BaseModule {
 	
@@ -24,7 +22,7 @@ class Loader extends BaseModule {
 	
 	public function onEnable() {
 		$plugin = $this->getPlugin();
-		$plugin->sendLog(CLR::GOLD . 'superBAR loading...');
+        $plugin->sendLog(CLR::GOLD . 'superBAR loading...');
 		
 		@mkdir($plugin->getDataFolder());
 		
@@ -39,8 +37,11 @@ class Loader extends BaseModule {
 		
 		$plugin->sendLog(CLR::GOLD . 'superBAR by FaigerSYS enabled!');
 	}
-	
-	private function getSettings() {
+
+    /**
+     * @return array
+     */
+    private function getSettings() {
 		if (!(($config = $this->getData()->getConfigProvider()) instanceof ConfigProvider))
 			$this->getData()->setConfigProvider($config = new ConfigProvider($this->getAnotherPlugin('PurePerms')));
 		else
@@ -49,8 +50,12 @@ class Loader extends BaseModule {
 		$settings = $config->getFormatedData();
 		return $settings;
 	}
-	
-	private function getPlugins($quiet = false) {
+
+    /**
+     * @param bool $quiet
+     * @return array
+     */
+    private function getPlugins($quiet = false) {
 		$plugin = $this->getPlugin();
 		$plugins = [];
 		
@@ -70,8 +75,11 @@ class Loader extends BaseModule {
 		
 		return $plugins;
 	}
-	
-	private function getAddons() {
+
+    /**
+     * @return AddonProvider
+     */
+    private function getAddons() {
 		if (!(($addons = $this->getData()->getAddonProvider()) instanceof AddonProvider))
 			$this->getData()->setAddonProvider($addons = new AddonProvider());
 		else
@@ -79,8 +87,11 @@ class Loader extends BaseModule {
 		
 		return $addons;
 	}
-	
-	public function loadAll($reload = false) {
+
+    /**
+     * @param bool $reload
+     */
+    public function loadAll($reload = false) {
 		$settings = $this->getSettings();
 		
 		$this->getPlugin()->setTimezone($settings['timezone']);
@@ -102,12 +113,19 @@ class Loader extends BaseModule {
 		$reload ? $this->getPlugin()->getServer()->getScheduler()->cancelTask($this->taskCache) : false;
 		$this->taskCache = $this->getPlugin()->getServer()->getScheduler()->scheduleRepeatingTask(new HUDShowTask($this->getPlugin(), $HUD), $timer)->getTaskId();
 	}
-	
-	public function getData() {
+
+    /**
+     * @return DataController
+     */
+    public function getData() {
 		return $this->data;
 	}
-	
-	private function getAnotherPlugin($name) {
+
+    /**
+     * @param $name
+     * @return bool
+     */
+    private function getAnotherPlugin($name) {
 		if ($plugin = $this->getPlugin()->getServer()->getPluginManager()->getPlugin($name)) {
 			if ($plugin->isEnabled()) return $plugin;
 		}
