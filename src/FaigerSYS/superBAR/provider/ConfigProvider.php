@@ -2,6 +2,7 @@
 
 namespace FaigerSYS\superBAR\provider;
 
+use _64FF00\PurePerms\PurePerms;
 use FaigerSYS\superBAR\BaseModule;
 use pocketmine\utils\TextFormat as CLR;
 
@@ -26,6 +27,7 @@ class ConfigProvider extends BaseModule
     private $data;
     private $pp_data;
 
+    /** @var PurePerms|null */
     private $PurePerms;
 
     /**
@@ -74,6 +76,7 @@ class ConfigProvider extends BaseModule
         $data = @yaml_parse(file_get_contents($this->PATH));
 
         if (!isset($data['ver']) || ($ver = $data['ver']) < $this->CONFIG_VERSION) {
+			$ver = $data['ver'];
             $this->sendUpdateMessage($ver);
         }
         $data = $this->getFixedData($data, $this->DEFAULT_CONFIG_DATA);
