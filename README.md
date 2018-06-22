@@ -1,7 +1,7 @@
 # superBAR
 ***
 
-###  Originally created by @FaigerSYS. Updated for PocketMine-MP 1.2 by @JackMD.
+###  Originally created by @FaigerSYS. Updated for PocketMine-MP by @JackMD.
 
 To download, look [here](https://poggit.pmmp.io/ci/JackMD/superBAR).
 
